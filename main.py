@@ -4,8 +4,8 @@ import ssl
 
 
 ssl._create_default_https_context = ssl._create_unverified_context 
-#only way that worked for me to remove 
-## urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1108)>
+##only way that worked for me to remove 
+### urllib.error.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1108)>
 finviz_url = 'https://finviz.com/quote.ashx?t='
 
 tickers = ['AMZN', 'GME', 'AMC', 'NOK']
@@ -24,4 +24,9 @@ for ticker in tickers:
 
 	break
 
-print(news_tables)
+amzn_data = news_tables['AMZN']
+amzn_rows = amzn_data.findAll('tr')
+
+for index, row in enumerate(amzn_rows): #enumerate() func returns the index and object of any list
+	title = row.a.text
+	print(title)
