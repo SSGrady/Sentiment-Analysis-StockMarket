@@ -24,9 +24,18 @@ for ticker in tickers:
 
 	break
 
-amzn_data = news_tables['AMZN']
+"""amzn_data = news_tables['AMZN']
 amzn_rows = amzn_data.findAll('tr')
 
 for index, row in enumerate(amzn_rows): #enumerate() func returns the index and object of any list
-	title = row.a.text
-	print(title)
+	title = row.a.text 
+	timestamp = row.td.text
+	print(timestamp + " " + title)"""
+
+parsed_data = []
+
+for tick, news_table in news_tables.items():
+	for rows in news_table.findAll('tr'):
+
+		title = row.a.get_text
+		date = row.td.split(' ')
